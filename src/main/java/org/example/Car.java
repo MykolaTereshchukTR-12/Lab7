@@ -6,9 +6,9 @@ public class Car {
     private int enginePower;
     private String driverName;
     private int price;
-    private int releaseDate;
+    private String releaseDate;
 
-    public Car(String model, int enginePower, String driverName, int price, int releaseDate) {
+    public Car(String model, int enginePower, String driverName, int price, String releaseDate) {
         this.model = model;
         this.enginePower = enginePower;
         this.driverName = driverName;
@@ -48,11 +48,11 @@ public class Car {
         this.price = price;
     }
 
-    public int getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(int releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
