@@ -3,12 +3,12 @@ package org.example;
 public class Car {
 
     private String model;
-    private int enginePower;
+    private double enginePower;
     private String driverName;
-    private int price;
+    private double price;
     private String releaseDate;
 
-    public Car(String model, int enginePower, String driverName, int price, String releaseDate) {
+    public Car(String model, double enginePower, String driverName, double price, String releaseDate) {
         this.model = model;
         this.enginePower = enginePower;
         this.driverName = driverName;
@@ -24,13 +24,11 @@ public class Car {
         this.model = model;
     }
 
-    public int getEnginePower() {
+    public double getEnginePower() {
         return enginePower;
     }
 
-    public void setEnginePower(int enginePower) {
-        this.enginePower = enginePower;
-    }
+    public void setEnginePower(double enginePower) { this.enginePower = enginePower; }
 
     public String getDriverName() {
         return driverName;
@@ -40,11 +38,11 @@ public class Car {
         this.driverName = driverName;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -56,4 +54,11 @@ public class Car {
         this.releaseDate = releaseDate;
     }
 
+    public double caRepair(double power, double percentages) {
+        return (power + ((power*percentages)/100));
+    }
+
+    public double priceIncrease(double price, double percentages) {
+        return (price + ((price*percentages)/100));
+    }
 }
