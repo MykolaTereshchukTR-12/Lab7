@@ -19,8 +19,8 @@ public class Main {
         for(int i = 0; i != 11; i++){
             driversList.add(new Driver(driverNames[i], ages[i], drivingExperiences[i]));
             carsList.add(new Car(models[i], enginePowers[i], driversList.get(i).getName(), prices[i], releaseDates[i]));
-            System.out.println(carsList.get(i).getModel() + " " + carsList.get(i).getEnginePower() + " " + carsList.get(i).getDriverName() +
-                    " " + carsList.get(i).getPrice() + " " + carsList.get(i).getReleaseDate());
+            System.out.println(carsList.get(i).getModel() + " \t" + carsList.get(i).getEnginePower() + " \t" + carsList.get(i).getDriverName() +
+                    " \t" + carsList.get(i).getPrice() + " \t" + carsList.get(i).getReleaseDate());
         }
 
         System.out.println("________________________________________________________________________________________________________________");
@@ -28,20 +28,30 @@ public class Main {
         for(int i = 0; i != carsList.size()/2; i++) {
             carsList.get(i).setEnginePower(carsList.get(i).caRepair(carsList.get(i).getEnginePower(), 10));
             carsList.get(i).setDriverName(driverNamesNew[i]);
-            System.out.println(carsList.get(i).getModel() + " " + carsList.get(i).getEnginePower() + " " + carsList.get(i).getDriverName() +
-                    " " + carsList.get(i).getPrice() + " " + carsList.get(i).getReleaseDate());
+            System.out.println(carsList.get(i).getModel() + " \t" + carsList.get(i).getEnginePower() + " \t" + carsList.get(i).getDriverName() +
+                    " \t" + carsList.get(i).getPrice() + " \t" + carsList.get(i).getReleaseDate());
         }
 
         System.out.println("________________________________________________________________________________________________________________");
 
-        for(int i = 0; i != carsList.size(); i += 2) {
+        for(int i = 0; i != (carsList.size() - 1); i += 2) {
             carsList.get(i).setEnginePower(carsList.get(i).caRepair(carsList.get(i).getEnginePower(), 10));
             carsList.get(i).setPrice(carsList.get(i).priceIncrease(carsList.get(i).getPrice(), 5));
-            System.out.println(carsList.get(i).getModel() + " " + carsList.get(i).getEnginePower() + " " + carsList.get(i).getDriverName() +
-                    " " + carsList.get(i).getPrice() + " " + carsList.get(i).getReleaseDate());        }
+            System.out.println(carsList.get(i).getModel() + " \t" + carsList.get(i).getEnginePower() + " \t" + carsList.get(i).getDriverName() +
+                    " \t" + carsList.get(i).getPrice() + " \t" + carsList.get(i).getReleaseDate());
+        }
 
         System.out.println("________________________________________________________________________________________________________________");
 
+        for(int i = 0; i != driversList.size(); i++) {
+            System.out.println(driversList.get(i).getName() + " \t" + driversList.get(i).getAge() + " \t" + driversList.get(i).getDrivingExperience());
+            driversList.get(i).setDrivingExperience(driversList.get(i).courses(driversList.get(i).getAge(), driversList.get(i).getDrivingExperience()));
+            System.out.println(driversList.get(i).getName() + " \t" + driversList.get(i).getAge() + " \t" + driversList.get(i).getDrivingExperience());
+            System.out.println("");
+        }
 
+        System.out.println("________________________________________________________________________________________________________________");
+
+        
     }
 }
