@@ -5,14 +5,14 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class Main {
-
-    private Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         ArrayList<Car> carsList = new ArrayList<>();
         ArrayList<Driver> driversList = new ArrayList<>();
         Main main = new Main();
         HelpEr helper = new HelpEr();
+        Scanner scan = new Scanner(System.in);
 
         String[] driverNames = {"Emily", "Liam", "Sophia", "Noah", "Olivia", "Ethan", "Ava", "Jack", "Isabella", "Jacob", "Conor"};
         String[] driverNamesNew = {"Octavia", "Percival", "Serafina", "Thaddeus", "Calliope"};
@@ -38,43 +38,53 @@ public class Main {
                     System.exit(0);
                 }
 
-                //Task 1.
+                //Task 1.1.
                 case ("1"): {
-                    for (int i = 0; i != 11; i++) {
+                    for (int i = 0; i != carsList.size(); i++) {
                         driversList.add(new Driver(driverNames[i], ages[i], drivingExperiences[i]));
                         carsList.add(new Car(models[i], enginePowers[i], driversList.get(i).getName(), prices[i], releaseDates[i]));
                         System.out.println(carsList.get(i).getModel() + " \t" + carsList.get(i).getEnginePower() + " \t" + carsList.get(i).getDriverName() +
                                 " \t" + carsList.get(i).getPrice() + " \t" + carsList.get(i).getReleaseDate());
                     }
                     System.out.println("________________________________________________________________________________________________________________");
-                    //break;
+                    System.out.println("Do you want to continue? Enter 6 for help or 0 to exit the program.");
+                    break;
                 }
 
-                //Task 2.
+                //Task 1.2.
                 case ("2"): {
                     for (int i = 0; i != carsList.size() / 2; i++) {
-                        carsList.get(i).setEnginePower(carsList.get(i).caRepair(carsList.get(i).getEnginePower(), 10));
+                        carsList.get(i).setEnginePower(carsList.get(i).caRepair(carsList.get(i).getEnginePower(), main.percentagePower()));
                         carsList.get(i).setDriverName(driverNamesNew[i]);
                         System.out.println(carsList.get(i).getModel() + " \t" + carsList.get(i).getEnginePower() + " \t" + carsList.get(i).getDriverName() +
                                 " \t" + carsList.get(i).getPrice() + " \t" + carsList.get(i).getReleaseDate());
                     }
                     System.out.println("________________________________________________________________________________________________________________");
+                    System.out.println("Do you want to continue? Enter 6 for help or 0 to exit the program.");
                     break;
                 }
 
-                //Task 3.
+                //Task 1.3.
                 case ("3"): {
-                    for (int i = 0; i != (carsList.size() - 1); i += 2) {
-                        carsList.get(i).setEnginePower(carsList.get(i).caRepair(carsList.get(i).getEnginePower(), 10));
-                        carsList.get(i).setPrice(carsList.get(i).priceIncrease(carsList.get(i).getPrice(), 5));
+                    int count = 0;
+                    if((carsList.size() % 2) == 1) {
+                        count = carsList.size() - 1;
+                    }else{
+                        count = carsList.size();
+                    }
+
+                    for (int i = 0; i != count; i += 2) {
+                        carsList.get(i).setEnginePower(carsList.get(i).caRepair(carsList.get(i).getEnginePower(), main.percentagePower()));
+                        carsList.get(i).setPrice(carsList.get(i).priceIncrease(carsList.get(i).getPrice(), main.percentagePrice()));
                         System.out.println(carsList.get(i).getModel() + " \t" + carsList.get(i).getEnginePower() + " \t" + carsList.get(i).getDriverName() +
                                 " \t" + carsList.get(i).getPrice() + " \t" + carsList.get(i).getReleaseDate());
                     }
                     System.out.println("________________________________________________________________________________________________________________");
+                    System.out.println("Do you want to continue? Enter 6 for help or 0 to exit the program.");
                     break;
                 }
 
-                //Task 4.
+                //Task 1.4.
                 case ("4"): {
                     for (int i = 0; i != driversList.size(); i++) {
                         System.out.println(driversList.get(i).getName() + " \t" + driversList.get(i).getAge() + " \t" + driversList.get(i).getDrivingExperience());
@@ -83,15 +93,17 @@ public class Main {
                         System.out.println("");
                     }
                     System.out.println("________________________________________________________________________________________________________________");
+                    System.out.println("Do you want to continue? Enter 6 for help or 0 to exit the program.");
                     break;
                 }
 
-                //Task 5.
+                //Task 1.5.
                 case ("5"): {
                     Car BOS = helper.getRandomCar(carsList);
                     System.out.println(helper.leftDriver(BOS));
                     System.out.println(helper.destination(BOS));
                     System.out.println("________________________________________________________________________________________________________________");
+                    System.out.println("Do you want to continue? Enter 6 for help or 0 to exit the program.");
                     break;
                 }
 
@@ -122,6 +134,30 @@ public class Main {
             _control = "6";
         }
         return _control;
+    }
+
+    public int percentagePower() {
+        int percentages = 0;
+        System.out.println("Please enter by what percentage to increase the power of cars:");
+        try {
+            percentages = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Enter correct integer values! Power will increase by 10%!");
+            percentages = 10;
+        }
+        return percentages;
+    }
+
+    public int percentagePrice() {
+        int percentages = 0;
+        System.out.println("Please enter the percentage to increase the price of the trip:");
+        try {
+            percentages = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Enter correct integer values! Price will increase by 5%!");
+            percentages = 5;
+        }
+        return percentages;
     }
 
     //Instruction
